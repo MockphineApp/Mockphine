@@ -1,33 +1,68 @@
-# Mockphine
-Mock API Server
+# Mockphine Desktop
 
-This repository hosts release tooling and the public issue tracker for Mockphine.
+Mockphine is a local mock API server with passthrough fallback and a live request view.
 
-## Support & Issues
+Without a mock server, teams lose days to unstable environments, missing data, and broken demos. Mockphine gives you a stable local source of truth, with a real-backend escape hatch when you need it.
 
-Use GitHub Issues to report bugs or request features. Please select the most relevant issue template and include logs or screenshots when possible.
+## Why Mockphine
 
-## Screenshots
+- Ship UI work without waiting on backend readiness.
+- Keep demos reliable even when the real API is down.
+- Debug faster with a live request timeline.
+- Share exact setups with your team in seconds.
 
-Product screenshots and visual assets belong in the screenshots/ folder.
+## What you get
 
-## Release repository
+- Local mock server with passthrough fallback.
+- Endpoint modes: mock, passthrough, or disabled.
+- Fallback modes: passthrough to real backend or strict 404.
+- Live request view with headers, body, status, and timing.
+- Workspace import and export, plus shareable collection packs.
+- Built-in packs to get started fast.
 
-This repository contains release tooling only. The application source code lives in a separate repo.
+## Download and install
 
-## Updater integration (external app)
+1. Download the installer for your OS from the [Mockphine](https://mockphine.com/) website.
+2. Install the app.
+3. Launch Mockphine.
 
-- Embed the updater public key in src-tauri/tauri.conf.json under plugins.updater.pubkey.
-- Set the updater endpoint to https://github.com/MockphineApp/Mockphine/releases/latest/download/latest.json.
-- After download_and_install, request app restart.
+If your OS blocks the app on first launch, allow it in the system prompt and try again.
 
-## Release workflow
+## Fast setup
 
-- Build macOS .app.tar.gz artifacts (arm64 and x86_64) in the app repo or CI.
-- Trigger the GitHub Actions workflow with tag, version, and artifact URLs.
-- Provide TAURI_PRIVATE_KEY and TAURI_PRIVATE_KEY_PASSWORD secrets in this repo.
+1. Create a server.
+2. Choose a port (for example `3000`).
+3. Set the real backend URL for passthrough.
+4. Pick a fallback mode.
+5. Start the server.
 
-## Local latest.json generation
+Send requests to `http://127.0.0.1:<port>`.
 
-- bun install
-- bun run release:latest-json -- --version X.Y.Z --product-name Mockphine --tag vX.Y.Z --bundle-dir /path/to/artifacts
+## Create your first endpoint
+
+1. Add an endpoint with method and path.
+2. Choose status, headers, and a JSON response body.
+3. Pick a mode.
+4. Save and send a request.
+
+## Modes
+
+Endpoint modes:
+
+- Mock: return the configured response.
+- Passthrough: forward to the real backend.
+- Disabled: skip mock and passthrough.
+
+Fallback modes:
+
+- Fallback: unmatched requests passthrough to the real backend.
+- Strict: unmatched requests return 404.
+
+## Troubleshooting
+
+- Port in use: stop the other service or pick a different port.
+- Passthrough errors: verify the real backend URL and your network.
+- No requests showing: make sure the server is started and you are calling the local URL.
+
+## Links
+- Webisite: https://mockphine.com/
